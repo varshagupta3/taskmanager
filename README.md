@@ -57,30 +57,6 @@ $env:JWT_SECRET="replace-with-a-long-production-secret"
 
 Use `Authorization: Bearer <token>` for authenticated API requests.
 
-## Railway Deployment
-
-1. Push this repository to GitHub.
-2. In Railway, create a new project from the GitHub repository.
-3. Add a Railway PostgreSQL database service.
-4. In the app service variables, set:
-
-```text
-DATABASE_URL=jdbc:postgresql://<host>:<port>/<database>
-DATABASE_USERNAME=<railway-db-user>
-DATABASE_PASSWORD=<railway-db-password>
-JWT_SECRET=<long-random-secret-at-least-32-characters>
-DDL_AUTO=update
-```
-
-5. Railway will build the Spring Boot app and run the `Procfile` web command.
-6. After deploy, open the generated Railway URL and create an Admin account first.
-
-## Submission Checklist
-
-- Live URL: add your Railway app URL here
-- GitHub repo: add your GitHub repository URL here
-- Demo video: record a 2-5 minute walkthrough showing signup/login, admin project creation, member assignment, task creation, member status update, and dashboard counts
-
 ## Demo Flow
 
 1. Create an `ADMIN` account.
