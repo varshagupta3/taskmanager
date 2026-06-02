@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team Task Manager</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section id="authView" class="auth-layout">
+      <div class="brand-panel">
+        <p class="eyebrow">Java Full Stack</p>
+        <h1>Team Task Manager</h1>
+        <p class="lede">Create projects, assign teammates, and keep delivery visible with role-based workflows.</p>
+        <div class="feature-row">
+          <span>JWT Auth</span>
+          <span>RBAC</span>
+          <span>PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="tabs" role="tablist">
+          <button class="tab active" id="loginTab" type="button">Login</button>
+          <button class="tab" id="signupTab" type="button">Signup</button>
+        </div>
+
+        <form id="loginForm" class="form">
+          <label>Email <input type="email" name="email" required autocomplete="email"></label>
+          <label>Password <input type="password" name="password" required autocomplete="current-password"></label>
+          <button class="primary" type="submit">Login</button>
+        </form>
+
+        <form id="signupForm" class="form hidden">
+          <label>Name <input type="text" name="name" required autocomplete="name"></label>
+          <label>Email <input type="email" name="email" required autocomplete="email"></label>
+          <label>Password <input type="password" name="password" minlength="6" required autocomplete="new-password"></label>
+          <label>Role
+            <select name="role">
+              <option value="MEMBER">Member</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+          </label>
+          <button class="primary" type="submit">Create account</button>
+        </form>
+        <p id="authMessage" class="message"></p>
+      </div>
+    </section>
+
+    <section id="appView" class="app hidden">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Workspace</p>
+          <h1>Team Task Manager</h1>
+        </div>
+        <div class="session">
+          <span id="userBadge"></span>
+          <button id="logoutBtn" class="ghost" type="button">Logout</button>
+        </div>
+      </header>
+
+      <section class="metrics">
+        <article><span id="openCount">0</span><p>Open assigned</p></article>
+        <article><span id="doneCount">0</span><p>Completed</p></article>
+        <article><span id="overdueCount">0</span><p>Overdue</p></article>
+        <article><span id="projectCount">0</span><p>Projects</p></article>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Projects</h2>
+            <span id="projectTotal" class="chip">0</span>
+          </div>
+          <form id="projectForm" class="compact-form admin-only">
+            <input name="name" placeholder="Project name" required>
+            <textarea name="description" placeholder="Short project description"></textarea>
+            <button class="primary" type="submit">Create project</button>
+          </form>
+          <div id="projects" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Tasks</h2>
+            <span id="taskTotal" class="chip">0</span>
+          </div>
+          <form id="taskForm" class="compact-form admin-only">
+            <input name="title" placeholder="Task title" required>
+            <textarea name="description" placeholder="Task details"></textarea>
+            <select name="projectId" required></select>
+            <select name="assignedToId"></select>
+            <input name="dueDate" type="date">
+            <button class="primary" type="submit">Create task</button>
+          </form>
+          <div id="tasks" class="task-list"></div>
+        </div>
+
+        <div class="panel side-panel admin-only">
+          <div class="panel-head">
+            <h2>Team</h2>
+          </div>
+          <form id="memberForm" class="compact-form">
+            <select name="projectId" required></select>
+            <select name="userId" required></select>
+            <button class="primary" type="submit">Add member</button>
+          </form>
+          <div id="users" class="list"></div>
+        </div>
+      </section>
+      <p id="appMessage" class="message"></p>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
